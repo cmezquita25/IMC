@@ -5,6 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+//UNIVERSIDAD TECNOLOGICA METROPOLITANA
+//JOEL IVAN CHUC UC
+//APLICACIONES WEB ORIENTADAS A SERVICIOS
+//CARLOS MANUEL MEZQUITA ALVARADO
+// CALCULAR INDICE DE MASA CORPORAL
+// 4 ° B
+//PARCIAL 1
+// SEPTIEMBRE - DICIEMBRE 2021
+
+
 namespace IMC.Controllers
 {
     [Route("api/[controller]")]
@@ -14,38 +24,41 @@ namespace IMC.Controllers
         [HttpGet]
         public IActionResult IMCFinal(double altura, double peso)
         {
+            //VARIABLES
             var R = new Persona();
             R.Peso = peso;
             R.Altura = altura / 100;
-            var AFinal = R.Altura;
-            var IMC = peso / (AFinal * AFinal);
-            var Clasificacion = "";
+            var alturaFinal = R.Altura;
+            var IMC = peso / (alturaFinal * alturaFinal);
+            var Calculo = "";
 
 
-
+            //CALCULOS
             if (IMC < 18.5)
             {
-                Clasificacion = "Tienes un peso inferior a lo normal";
+                Calculo = "TIENE UN PESO INFERIOR AL NORMAL";
             }
             else
             {
                 if (IMC >= 18.5 && IMC <= 24.9)
                 {
-                    Clasificacion = "Tienes un peso normal";
+                    Calculo = "TIENE UN PESO NORMAL";
                 }
                 else
                 {
                     if (IMC >= 25.0 && IMC <= 29.9)
                     {
-                        Clasificacion = "Tienes un peso superior al normal";
+                        Calculo = "TIENES UN PESO SUPERIOR AL NORMAL";
                     }
                     else
                     {
-                        Clasificacion = "Tienes obesidad";
+                        Calculo = "TIENE OBESIDAD";
                     }
                 }
             }
-            var Resultado = "Su IMC es: " + Convert.ToString(IMC) + "y su composicion corporal es: " + Clasificacion;
+            //RESULTADO FINAL
+            var Resultado = "SU IMC ES: " + Convert.ToString(IMC) + " SU RESULTADO ES: " + Calculo;
+
             return Ok(Resultado);
         }
     }
